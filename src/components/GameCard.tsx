@@ -7,19 +7,26 @@ import {
   Heading,
   Hide,
   Image,
+  Skeleton,
   Text,
 } from "@chakra-ui/react";
 import { Game } from "../hooks/useGames";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getResizedImageUrl from "../services/image-url";
+import useGames from "../hooks/useGames";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 interface Props {
   game: Game;
 }
 
 const GameCard = ({ game }: Props) => {
-  return (
+  const { isLoading } = useGames();
+
+  return isLoading ? (
+    <GameCardSkeleton />
+  ) : (
     <Card
       border="2px"
       borderColor="gray.500"
