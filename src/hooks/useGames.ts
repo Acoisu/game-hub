@@ -13,6 +13,7 @@ export interface Game {
   name: string;
   background_image: string;
   parent_platforms: { platform: Platform }[];
+  metacritic: number;
 }
 
 interface FetchGameResponse {
@@ -34,7 +35,7 @@ const useGames = () => {
         if (error instanceof CanceledError) return;
         setError(error.message);
       });
-    console.log({ gameList });
+    console.log({ error });
     return () => controller.abort();
   }, []);
   return { gameList, error };
