@@ -1,27 +1,37 @@
-import React from "react";
-import apiClient from "../services/api-client";
 import useGenres from "../hooks/useGenres";
-import { ListItem, UnorderedList } from "@chakra-ui/react";
+import {
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+  UnorderedList,
+} from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
-import useData from "../hooks/useData";
-
-interface Genre {
-  id: number;
-  name: string;
-}
+import getResizedImageUrl from "../services/image-url";
 
 const GenreList = () => {
-  const { data, error } = useGenres();
+  const { data, error, isLoading } = useGenres();
+  if (error) return null;
+  if (isLoading) return <Spinner color="gray.500" />;
 
   return (
-    <>
-      {error && <Text>{error}</Text>}
-      <UnorderedList>
-        {data.map((genre) => (
-          <ListItem key={genre.id}>{genre.name}</ListItem>
-        ))}
-      </UnorderedList>
-    </>
+    <List>
+      {data.map((genre) => (
+        <ListItem padding={"5px"}>
+          <HStack>
+            <Image
+              src={getResizedImageUrl(genre.image_background)}
+              width={"45px"}
+              borderRadius={5}
+            ></Image>
+            <Text fontSize={"lg"} key={genre.id}>
+              {genre.name}
+            </Text>
+          </HStack>
+        </ListItem>
+      ))}
+    </List>
   );
 };
 
