@@ -15,13 +15,8 @@ const GameCardSkeleton = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   return (
     <>
-      <Card
-        border="2px"
-        borderColor="gray.500"
-        borderRadius={10}
-        overflow="Hidden"
-      >
-        <Skeleton height={"200px"} />
+      <Card>
+        <Skeleton height={"250px"} />
         <CardBody>
           <SkeletonText />
         </CardBody>
