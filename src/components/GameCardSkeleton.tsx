@@ -5,7 +5,7 @@ const GameCardSkeleton = () => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   return (
     <>
-      <Card>
+      <Card height={"100%"}>
         <Skeleton height={"250px"} />
         <CardBody>
           <SkeletonText />

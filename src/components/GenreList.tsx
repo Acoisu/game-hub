@@ -6,17 +6,15 @@ import {
   List,
   ListItem,
   Spinner,
-  UnorderedList,
-  filter,
 } from "@chakra-ui/react";
-import { Text } from "@chakra-ui/react";
 import getResizedImageUrl from "../services/image-url";
 
 interface Props {
   onFilterGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onFilterGenre }: Props) => {
+const GenreList = ({ selectedGenre, onFilterGenre }: Props) => {
   const { data, error, isLoading } = useGenres();
   if (error) return null;
   if (isLoading) return <Spinner color="gray.500" />;
@@ -34,6 +32,7 @@ const GenreList = ({ onFilterGenre }: Props) => {
             <Button
               onClick={() => onFilterGenre(genre)}
               variant={"ghost"}
+              backgroundColor={genre.id === selectedGenre?.id ? "gray.500" : ""}
               fontSize={"lg"}
               key={genre.id}
             >
