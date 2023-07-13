@@ -6,11 +6,6 @@ interface FetchResponse<T> {
   count: number;
   results: T[];
 }
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
 
 const useData = <T extends {}>(
   endpoint: string,

@@ -7,23 +7,31 @@ import {
   Select,
   TagRightIcon,
 } from "@chakra-ui/react";
-import usePlatforms from "../hooks/usePlatforms";
+import usePlatforms, { Platforms } from "../hooks/usePlatforms";
 import { BsArrowDownShort } from "react-icons/bs";
 
-const PlatformSelector = () => {
-  const { data, error } = usePlatforms();
-  if (error) return null;
+interface Props {
+  onFilterPlatform: (platform: Platforms) => void;
+  selectedPlatform: Platforms | null;
+}
 
-  console.log({ data });
+const PlatformSelector = ({ selectedPlatform, onFilterPlatform }: Props) => {
+  const { data, error } = usePlatforms(selectedPlatform);
+  if (error) return null;
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsArrowDownShort />}>
-        Platforms
+        {selectedPlatform?.name || "Platform"}
       </MenuButton>
       <MenuList>
         {data.map((platform) => (
-          <MenuItem key={platform.id}>{platform.name}</MenuItem>
+          <MenuItem
+            key={platform.id}
+            onClick={() => onFilterPlatform(platform)}
+          >
+            {platform.name}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>

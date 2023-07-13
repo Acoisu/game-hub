@@ -25,6 +25,7 @@ const GenreList = ({ selectedGenre, onFilterGenre }: Props) => {
         <ListItem padding={"5px"}>
           <HStack>
             <Image
+              key={genre.image_background}
               src={getResizedImageUrl(genre.image_background)}
               width={"45px"}
               borderRadius={5}
