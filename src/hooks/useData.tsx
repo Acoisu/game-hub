@@ -12,14 +12,6 @@ export interface Platform {
   slug: string;
 }
 
-export interface Games {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-}
-
 const useData = <T extends {}>(
   endpoint: string,
   AxiosRequestConfig?: AxiosRequestConfig,
