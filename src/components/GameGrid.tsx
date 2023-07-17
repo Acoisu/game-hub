@@ -17,7 +17,6 @@ const GameGrid = ({ genreFilter, platformFilter }: Props) => {
   for (let count = 0; count < 20; count++) {
     skeletons.push(count);
   }
-  console.log(skeletons);
   return (
     <>
       {error && <Text>{error}</Text>}
