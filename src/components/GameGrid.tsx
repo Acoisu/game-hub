@@ -5,14 +5,20 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { Genre } from "../hooks/useGenres";
 import { Platforms } from "../hooks/usePlatforms";
+import { SortType } from "./SortSelector";
 
 interface Props {
   genreFilter: Genre | null;
   platformFilter: Platforms | null;
+  selectorFilter: SortType | null;
 }
 
-const GameGrid = ({ genreFilter, platformFilter }: Props) => {
-  const { data, error, isLoading } = useGames(genreFilter, platformFilter);
+const GameGrid = ({ genreFilter, platformFilter, selectorFilter }: Props) => {
+  const { data, error, isLoading } = useGames(
+    genreFilter,
+    platformFilter,
+    selectorFilter
+  );
   const skeletons: number[] = [];
   for (let count = 0; count < 20; count++) {
     skeletons.push(count);

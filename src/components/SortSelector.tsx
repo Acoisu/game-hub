@@ -1,34 +1,39 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import { useState } from "react";
 import { BsArrowDownShort } from "react-icons/bs";
 
-const SortSelector = () => {
-  const [type, setType] = useState<string>();
+interface Props {
+  onFilterSelect: (select: SortType) => void;
+  selector: SortType | null;
+}
 
-  const sortType: string[] = [
-    "Name",
-    "Released",
-    "added",
-    "Created",
-    "Updated",
-    "Rating",
-    "Metacritic",
+export interface SortType {
+  name: string;
+  request: string;
+}
+
+const SortSelector = ({ onFilterSelect, selector }: Props) => {
+  const sortTypes: SortType[] = [
+    { name: "Relevance", request: "" },
+    { name: "Name", request: "name" },
+    { name: "Realeased date", request: "-dates" },
+    { name: "Updated time", request: "-updated" },
+    { name: "Rating", request: "-metacritic" },
   ];
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsArrowDownShort />}>
-        Order by : {type || "Relevance"}
+        Order by : {selector?.name || "Relevance"}
       </MenuButton>
       <MenuList>
-        {sortType.map((type) => (
+        {sortTypes.map((type) => (
           <MenuItem
             onClick={() => {
-              setType(type);
+              onFilterSelect(type);
             }}
-            key={type}
+            key={type.name}
           >
-            {type}
+            {type.name}
           </MenuItem>
         ))}
       </MenuList>

@@ -6,11 +6,12 @@ import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platforms } from "./hooks/usePlatforms";
-import SortSelector from "./components/SortSelector";
+import SortSelector, { SortType } from "./components/SortSelector";
 
 function App() {
   const [filterGenre, setFilterGenre] = useState<Genre | null>(null);
   const [filterPlatform, setFilterPlatform] = useState<Platforms | null>(null);
+  const [filterSelect, setFilterSelect] = useState<SortType | null>(null);
 
   return (
     <Grid
@@ -40,9 +41,16 @@ function App() {
             selectedPlatform={filterPlatform}
             onFilterPlatform={(platform) => setFilterPlatform(platform)}
           />
-          <SortSelector />
+          <SortSelector
+            onFilterSelect={(filterSelect) => setFilterSelect(filterSelect)}
+            selector={filterSelect}
+          />
         </HStack>
-        <GameGrid genreFilter={filterGenre} platformFilter={filterPlatform} />
+        <GameGrid
+          genreFilter={filterGenre}
+          platformFilter={filterPlatform}
+          selectorFilter={filterSelect}
+        />
       </GridItem>
     </Grid>
   );
