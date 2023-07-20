@@ -7,12 +7,13 @@ import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platforms } from "./hooks/usePlatforms";
 import SortSelector, { SortType } from "./components/SortSelector";
+import Header from "./components/Header";
 
 function App() {
   const [filterGenre, setFilterGenre] = useState<Genre | null>(null);
   const [filterPlatform, setFilterPlatform] = useState<Platforms | null>(null);
   const [filterSelect, setFilterSelect] = useState<SortType | null>(null);
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<string | null>(null);
 
   return (
     <Grid
@@ -37,6 +38,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
+        <Header genre={filterGenre?.name} platform={filterPlatform?.name} />
         <HStack paddingLeft={2.5}>
           <PlatformSelector
             selectedPlatform={filterPlatform}
