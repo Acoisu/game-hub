@@ -2,6 +2,7 @@ import useGenres, { Genre } from "../hooks/useGenres";
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -20,29 +21,38 @@ const GenreList = ({ selectedGenre, onFilterGenre }: Props) => {
   if (isLoading) return <Spinner color="gray.500" />;
 
   return (
-    <List>
-      {data.map((genre) => (
-        <ListItem padding={"5px"}>
-          <HStack>
-            <Image
-              key={genre.image_background}
-              src={getResizedImageUrl(genre.image_background)}
-              width={"45px"}
-              borderRadius={5}
-            ></Image>
-            <Button
-              onClick={() => onFilterGenre(genre)}
-              variant={"ghost"}
-              backgroundColor={genre.id === selectedGenre?.id ? "gray.500" : ""}
-              fontSize={"lg"}
-              key={genre.id}
-            >
-              {genre.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Heading marginBottom={2} as={"h2"}>
+        Genres
+      </Heading>
+      <List>
+        {data.map((genre) => (
+          <ListItem padding={"5px"}>
+            <HStack>
+              <Image
+                key={genre.image_background}
+                src={getResizedImageUrl(genre.image_background)}
+                width={"45px"}
+                borderRadius={5}
+              ></Image>
+              <Button
+                whiteSpace={"normal"}
+                textAlign={"left"}
+                onClick={() => onFilterGenre(genre)}
+                variant={"ghost"}
+                backgroundColor={
+                  genre.id === selectedGenre?.id ? "gray.500" : ""
+                }
+                fontSize={"lg"}
+                key={genre.id}
+              >
+                {genre.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    </>
   );
 };
 
