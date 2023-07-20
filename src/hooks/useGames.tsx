@@ -1,3 +1,4 @@
+import SearchInput from "../components/SearchInput";
 import { SortType } from "../components/SortSelector";
 import useData from "./useData";
 import { Genre } from "./useGenres";
@@ -21,7 +22,8 @@ export interface Game {
 const useGames = (
   genreFilter: Genre | null,
   platformFilter: Platforms | null,
-  selectorFilter: SortType | null
+  selectorFilter: SortType | null,
+  search: string | null
 ) =>
   useData<Game>(
     "/games",
@@ -30,9 +32,10 @@ const useGames = (
         genres: genreFilter?.slug,
         platforms: platformFilter?.id,
         ordering: selectorFilter?.request,
+        search: search,
       },
     },
-    [genreFilter?.slug, platformFilter?.id, selectorFilter?.request]
+    [genreFilter?.slug, platformFilter?.id, selectorFilter?.request, search]
   );
 
 export default useGames;

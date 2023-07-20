@@ -12,6 +12,7 @@ function App() {
   const [filterGenre, setFilterGenre] = useState<Genre | null>(null);
   const [filterPlatform, setFilterPlatform] = useState<Platforms | null>(null);
   const [filterSelect, setFilterSelect] = useState<SortType | null>(null);
+  const [search, setSearch] = useState<string>("");
 
   return (
     <Grid
@@ -25,7 +26,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <Navbar />
+        <Navbar search={(research) => setSearch(research)} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
@@ -50,6 +51,7 @@ function App() {
           genreFilter={filterGenre}
           platformFilter={filterPlatform}
           selectorFilter={filterSelect}
+          search={search}
         />
       </GridItem>
     </Grid>

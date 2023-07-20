@@ -6,18 +6,26 @@ import GameCardContainer from "./GameCardContainer";
 import { Genre } from "../hooks/useGenres";
 import { Platforms } from "../hooks/usePlatforms";
 import { SortType } from "./SortSelector";
+import SearchInput from "./SearchInput";
 
 interface Props {
   genreFilter: Genre | null;
   platformFilter: Platforms | null;
   selectorFilter: SortType | null;
+  search: string | null;
 }
 
-const GameGrid = ({ genreFilter, platformFilter, selectorFilter }: Props) => {
+const GameGrid = ({
+  genreFilter,
+  platformFilter,
+  selectorFilter,
+  search,
+}: Props) => {
   const { data, error, isLoading } = useGames(
     genreFilter,
     platformFilter,
-    selectorFilter
+    selectorFilter,
+    search
   );
   const skeletons: number[] = [];
   for (let count = 0; count < 20; count++) {
