@@ -1,18 +1,11 @@
-import {
-  Button,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Select,
-  TagRightIcon,
-} from "@chakra-ui/react";
-import usePlatforms, { Platforms } from "../hooks/usePlatforms";
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsArrowDownShort } from "react-icons/bs";
+import { Platform } from "../hooks/useData";
+import usePlatforms from "../hooks/usePlatforms";
 
 interface Props {
-  onFilterPlatform: (platform: Platforms) => void;
-  selectedPlatform: Platforms | null;
+  onFilterPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null;
 }
 
 const PlatformSelector = ({ selectedPlatform, onFilterPlatform }: Props) => {

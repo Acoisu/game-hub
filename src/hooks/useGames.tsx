@@ -1,8 +1,5 @@
 import { GameQuery } from "../App";
-import SearchInput from "../components/SearchInput";
-import { SortType } from "../components/SortSelector";
 import useData, { Platform } from "./useData";
-import { Genre } from "./useGenres";
 
 export interface Game {
   id: number;
