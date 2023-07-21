@@ -22,12 +22,12 @@ const GenreList = ({ selectedGenre, onFilterGenre }: Props) => {
 
   return (
     <>
-      <Heading marginBottom={2} as={"h2"}>
+      <Heading marginBottom={2} as={"h2"} size={"lg"}>
         Genres
       </Heading>
       <List>
         {data.map((genre) => (
-          <ListItem padding={"5px"}>
+          <ListItem padding={0.5}>
             <HStack>
               <Image
                 key={genre.image_background}

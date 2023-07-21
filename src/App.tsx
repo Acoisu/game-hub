@@ -5,16 +5,19 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
-import { Platforms } from "./hooks/usePlatforms";
 import SortSelector, { SortType } from "./components/SortSelector";
 import Header from "./components/Header";
+import { Platform } from "./hooks/useData";
+
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+  select: SortType | null;
+  search: string | null;
+}
 
 function App() {
-  const [filterGenre, setFilterGenre] = useState<Genre | null>(null);
-  const [filterPlatform, setFilterPlatform] = useState<Platforms | null>(null);
-  const [filterSelect, setFilterSelect] = useState<SortType | null>(null);
-  const [search, setSearch] = useState<string | null>(null);
-
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   return (
     <Grid
       templateAreas={{
@@ -27,34 +30,34 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <Navbar search={(research) => setSearch(research)} />
+        <Navbar search={(search) => setGameQuery({ ...gameQuery, search })} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
           <GenreList
-            selectedGenre={filterGenre}
-            onFilterGenre={(genre) => setFilterGenre(genre)}
+            selectedGenre={gameQuery.genre}
+            onFilterGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
           />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Header genre={filterGenre?.name} platform={filterPlatform?.name} />
+        <Header
+          genre={gameQuery?.genre?.name}
+          platform={gameQuery.platform?.name}
+        />
         <HStack paddingLeft={2.5}>
           <PlatformSelector
-            selectedPlatform={filterPlatform}
-            onFilterPlatform={(platform) => setFilterPlatform(platform)}
+            selectedPlatform={gameQuery.platform}
+            onFilterPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
           />
           <SortSelector
-            onFilterSelect={(filterSelect) => setFilterSelect(filterSelect)}
-            selector={filterSelect}
+            onFilterSelect={(select) => setGameQuery({ ...gameQuery, select })}
+            selector={gameQuery.select}
           />
         </HStack>
-        <GameGrid
-          genreFilter={filterGenre}
-          platformFilter={filterPlatform}
-          selectorFilter={filterSelect}
-          search={search}
-        />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );

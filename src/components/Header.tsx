@@ -11,7 +11,7 @@ const Header = ({ genre, platform }: Props) => {
   //   console.log(platform);
 
   return (
-    <Heading as={"h1"} size={"3xl"} paddingBottom={10} paddingLeft={2.5}>
+    <Heading as={"h1"} size={"2xl"} paddingBottom={10} paddingLeft={2.5}>
       {genre ? genre + " " : ""}
       {platform ? platform + " games" : "Games"}
     </Heading>

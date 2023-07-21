@@ -7,6 +7,12 @@ interface FetchResponse<T> {
   results: T[];
 }
 
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 const useData = <T extends {}>(
   endpoint: string,
   AxiosRequestConfig?: AxiosRequestConfig,

@@ -1,14 +1,8 @@
-import React from "react";
+import { Platform } from "./useData";
 import useData from "./useData";
 
-export interface Platforms {
-  id: string;
-  name: string;
-  slug: string;
-}
-
-const usePlatforms = (platformFilter: Platforms | null) =>
-  useData<Platforms>(
+const usePlatforms = (platformFilter: Platform | null) =>
+  useData<Platform>(
     "/platforms",
     { params: { platforms: platformFilter?.id } },
     [platformFilter?.id]

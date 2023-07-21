@@ -1,14 +1,8 @@
+import { GameQuery } from "../App";
 import SearchInput from "../components/SearchInput";
 import { SortType } from "../components/SortSelector";
-import useData from "./useData";
+import useData, { Platform } from "./useData";
 import { Genre } from "./useGenres";
-import { Platforms } from "./usePlatforms";
-
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
 
 export interface Game {
   id: number;
@@ -19,23 +13,18 @@ export interface Game {
   genre: string;
 }
 
-const useGames = (
-  genreFilter: Genre | null,
-  platformFilter: Platforms | null,
-  selectorFilter: SortType | null,
-  search: string | null
-) =>
+const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
     "/games",
     {
       params: {
-        genres: genreFilter?.slug,
-        platforms: platformFilter?.id,
-        ordering: selectorFilter?.request,
-        search: search,
+        genres: gameQuery.genre?.slug,
+        platforms: gameQuery.platform?.id,
+        ordering: gameQuery.select?.request,
+        search: gameQuery.search,
       },
     },
-    [genreFilter?.slug, platformFilter?.id, selectorFilter?.request, search]
+    [gameQuery]
   );
 
 export default useGames;
