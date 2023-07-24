@@ -17,7 +17,7 @@ const PlatformSelector = ({ selectedPlatform, onFilterPlatform }: Props) => {
       <MenuButton as={Button} rightIcon={<BsArrowDownShort />}>
         {selectedPlatform?.name || "Platform"}
       </MenuButton>
-      <MenuList>
+      <MenuList maxHeight={"700"} overflowY={"scroll"}>
         {data.map((platform) => (
           <MenuItem
             key={platform.id}
