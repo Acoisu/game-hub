@@ -26,7 +26,7 @@ const GenreList = ({ selectedGenre, onFilterGenre }: Props) => {
         Genres
       </Heading>
       <List>
-        {data.map((genre) => (
+        {data?.results.map((genre) => (
           <ListItem padding={0.5}>
             <HStack>
               <Image
