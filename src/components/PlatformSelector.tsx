@@ -1,7 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsArrowDownShort } from "react-icons/bs";
-import { Platform } from "../hooks/useData";
-import usePlatforms from "../hooks/usePlatforms";
+import usePlatforms, { Platform } from "../hooks/usePlatforms";
 
 interface Props {
   onFilterPlatform: (platform: Platform) => void;
@@ -18,7 +17,7 @@ const PlatformSelector = ({ selectedPlatform, onFilterPlatform }: Props) => {
         {selectedPlatform?.name || "Platform"}
       </MenuButton>
       <MenuList maxHeight={"700"} overflowY={"scroll"}>
-        {data.map((platform) => (
+        {data?.results.map((platform) => (
           <MenuItem
             key={platform.id}
             onClick={() => onFilterPlatform(platform)}

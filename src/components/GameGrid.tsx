@@ -15,9 +15,11 @@ const GameGrid = ({ gameQuery }: Props) => {
   for (let count = 0; count < 20; count++) {
     skeletons.push(count);
   }
+  console.log(data);
+
   return (
     <>
-      {error && <Text>{error}</Text>}
+      {error && <Text>{error.message}</Text>}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding={"10px"}
@@ -29,7 +31,7 @@ const GameGrid = ({ gameQuery }: Props) => {
               <GameCardSkeleton key={Skeleton} />
             </GameCardContainer>
           ))}
-        {data.map((game) => (
+        {data?.results.map((game) => (
           <GameCardContainer>
             <GameCard key={game.id} game={game} />
           </GameCardContainer>
