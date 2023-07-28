@@ -3,12 +3,15 @@ import { BsArrowDownShort } from "react-icons/bs";
 import usePlatforms, { Platform } from "../hooks/usePlatforms";
 
 interface Props {
-  onFilterPlatform: (platform: Platform) => void;
-  selectedPlatform: Platform | null;
+  onFilterPlatform: (platform: number) => void;
+  selectedPlatformId?: number;
 }
 
-const PlatformSelector = ({ selectedPlatform, onFilterPlatform }: Props) => {
+const PlatformSelector = ({ selectedPlatformId, onFilterPlatform }: Props) => {
   const { data, error } = usePlatforms();
+  const selectedPlatform = data?.results.find(
+    (platform) => platform.id === selectedPlatformId
+  );
   if (error) return null;
 
   return (
@@ -20,7 +23,7 @@ const PlatformSelector = ({ selectedPlatform, onFilterPlatform }: Props) => {
         {data?.results.map((platform) => (
           <MenuItem
             key={platform.id}
-            onClick={() => onFilterPlatform(platform)}
+            onClick={() => onFilterPlatform(platform.id)}
           >
             {platform.name}
           </MenuItem>

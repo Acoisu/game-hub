@@ -12,10 +12,10 @@ import getResizedImageUrl from "../services/image-url";
 
 interface Props {
   onFilterGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
 }
 
-const GenreList = ({ selectedGenre, onFilterGenre }: Props) => {
+const GenreList = ({ selectedGenreId, onFilterGenre }: Props) => {
   const { data, error, isLoading } = useGenres();
   if (error) return null;
   if (isLoading) return <Spinner color="gray.500" />;
@@ -40,9 +40,7 @@ const GenreList = ({ selectedGenre, onFilterGenre }: Props) => {
                 textAlign={"left"}
                 onClick={() => onFilterGenre(genre)}
                 variant={"ghost"}
-                backgroundColor={
-                  genre.id === selectedGenre?.id ? "gray.500" : ""
-                }
+                backgroundColor={genre.id === selectedGenreId ? "gray.500" : ""}
                 fontSize={"lg"}
                 key={genre.id}
               >
