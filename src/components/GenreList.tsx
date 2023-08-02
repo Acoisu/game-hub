@@ -9,17 +9,15 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import getResizedImageUrl from "../services/image-url";
+import useGameQueryStore from "../store/store.ts";
 
-interface Props {
-  onFilterGenre: (genre: Genre) => void;
-  selectedGenreId?: number;
-}
-
-const GenreList = ({ selectedGenreId, onFilterGenre }: Props) => {
+const GenreList = () => {
   const { data, error, isLoading } = useGenres();
+  const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
+  const setGenreId = useGameQueryStore((s) => s.setGenreId);
+
   if (error) return null;
   if (isLoading) return <Spinner color="gray.500" />;
-
   return (
     <>
       <Heading marginBottom={2} as={"h2"} size={"lg"}>
@@ -38,7 +36,7 @@ const GenreList = ({ selectedGenreId, onFilterGenre }: Props) => {
               <Button
                 whiteSpace={"normal"}
                 textAlign={"left"}
-                onClick={() => onFilterGenre(genre)}
+                onClick={() => setGenreId(genre.id)}
                 variant={"ghost"}
                 backgroundColor={genre.id === selectedGenreId ? "gray.500" : ""}
                 fontSize={"lg"}
