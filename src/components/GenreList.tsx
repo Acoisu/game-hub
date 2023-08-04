@@ -9,7 +9,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import getResizedImageUrl from "../services/image-url";
-import useGameQueryStore from "../store/store.ts";
+import useGameQueryStore from "../store/store";
 
 const GenreList = () => {
   const { data, error, isLoading } = useGenres();

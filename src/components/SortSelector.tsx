@@ -1,6 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsArrowDownShort } from "react-icons/bs";
-import useGameQueryStore from "../store/store.ts";
+import useGameQueryStore from "../store/store";
 
 export interface SortType {
   name: string;
@@ -17,9 +17,7 @@ const SortSelector = () => {
   ];
   const selector = useGameQueryStore((s) => s.gameQuery.select);
   const setSelector = useGameQueryStore((s) => s.setSelect);
-  const currentSortType = sortTypes.find(
-    (type) => type?.name === selector?.name
-  );
+  const currentSortType = sortTypes.find((type) => type?.name === selector);
 
   return (
     <Menu>
@@ -30,7 +28,7 @@ const SortSelector = () => {
         {sortTypes.map((type) => (
           <MenuItem
             onClick={() => {
-              setSelector(type);
+              setSelector(type.request);
             }}
             key={type.name}
           >
