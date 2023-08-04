@@ -1,23 +1,19 @@
+import { Heading, Spinner, Text } from "@chakra-ui/react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, CardBody, CardHeader, Heading, Text } from "@chakra-ui/react";
 import useGame from "../../hooks/useGame";
-import getResizedImageUrl from "../../services/image-url";
+import ExpandableText from "../ExpandableText";
 
 const GameDetailPage = () => {
   const { slug } = useParams();
-  const { data } = useGame(slug!);
-  console.log(data);
+  const { data: game, isLoading, error } = useGame(slug!);
+  if (isLoading) return <Spinner />;
+  if (error || !game) throw error;
 
   return (
     <>
-      <Card>
-        <CardHeader>
-          <Heading>{data?.name}</Heading>
-        </CardHeader>
-        <CardBody>
-          <Text>{data?.description_raw}</Text>
-        </CardBody>
-      </Card>
+      <Heading>{game.name}</Heading>
+      <ExpandableText>{game.description_raw}</ExpandableText>
     </>
   );
 };
