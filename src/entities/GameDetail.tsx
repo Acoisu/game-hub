@@ -1,11 +1,14 @@
+import { Developer } from "./Developer";
 import { Genre } from "./Genre";
 import { Platform } from "./Platform";
 
-export interface Game {
+export interface GameDetail {
   id: number;
   name: string;
   slug: string;
-  background_image: string;
+  description_raw: string;
+  developers: Developer[];
   parent_platforms: { platform: Platform }[];
   metacritic: number;
+  genres: Genre[];
 }
