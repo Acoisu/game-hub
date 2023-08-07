@@ -13,7 +13,7 @@ const GameMovie = ({ gameId }: Props) => {
 
   const firstM = data?.results[0];
 
-  return firstM ? <video src={firstM?.data["max"]} controls autoPlay /> : null;
+  return firstM ? <video src={firstM?.data["max"]} controls /> : null;
 };
 
 export default GameMovie;
