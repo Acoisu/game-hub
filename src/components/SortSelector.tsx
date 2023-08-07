@@ -8,7 +8,7 @@ export interface SortType {
 }
 
 const SortSelector = () => {
-  const sortTypes: SortType[] = [
+  const sortTypes = [
     { name: "Relevance", request: "" },
     { name: "Name", request: "name" },
     { name: "Realeased date", request: "-dates" },
@@ -17,7 +17,9 @@ const SortSelector = () => {
   ];
   const selector = useGameQueryStore((s) => s.gameQuery.select);
   const setSelector = useGameQueryStore((s) => s.setSelect);
-  const currentSortType = sortTypes.find((type) => type?.name === selector);
+  const currentSortType = sortTypes.find((type) => type.request === selector);
+  console.log(selector + " plop");
+  console.log(currentSortType + " plap");
 
   return (
     <Menu>
