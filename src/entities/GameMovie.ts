@@ -1,4 +1,4 @@
-export interface GameMovie {
+export default interface GameMovie {
   id: number;
   name: string;
   preview: string;
