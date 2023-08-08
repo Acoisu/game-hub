@@ -1,4 +1,3 @@
-import { Genre } from "./Genre";
 import { Platform } from "./Platform";
 
 export interface Game {
