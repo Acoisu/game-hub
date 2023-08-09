@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import Navbar from "./Navbar";
-import GameGrid from "./GameGrid";
+import Navbar from "./active components/Navbar";
+import GameGrid from "./active components/GameGrid";
 import GameDetailPage from "./pages/GameDetailPage";
 import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";

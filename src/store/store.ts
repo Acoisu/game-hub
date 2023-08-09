@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { SortType } from "../components/SortSelector";
+import { SortType } from "../components/filter compnents/SortSelector";
 
 export interface GameQuery {
   genreId?: number;

@@ -1,7 +1,7 @@
 import { Grid, Text } from "@chakra-ui/react";
-import DefinitionItem from "../DefinitionItem";
-import GameDetail from "../entities/GameDetail";
-import CriticScore from "./CriticScore";
+import DefinitionItem from "../../DefinitionItem";
+import GameDetail from "../../entities/game detail/GameDetail";
+import CriticScore from "../style components/CriticScore";
 
 interface Props {
   data: GameDetail;

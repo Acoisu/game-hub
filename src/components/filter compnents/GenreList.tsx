@@ -1,5 +1,5 @@
-import useGenres from "../hooks/useGenres";
-import Genre from "../entities/Genre";
+import useGenres from "../../hooks/useGenres";
+import Genre from "../../entities/Genre";
 import {
   Button,
   HStack,
@@ -9,8 +9,8 @@ import {
   ListItem,
   Spinner,
 } from "@chakra-ui/react";
-import getResizedImageUrl from "../services/image-url";
-import useGameQueryStore from "../store/store";
+import getResizedImageUrl from "../../services/image-url";
+import useGameQueryStore from "../../store/store";
 
 const GenreList = () => {
   const { data, error, isLoading } = useGenres();

@@ -7,11 +7,11 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import useGame from "../../hooks/useGame";
-import ExpandableText from "../ExpandableText";
-import GameAttributes from "../GameAttributes";
-import GameScreenShots from "../GameScreenShots";
-import GameMovie from "../GameMovie";
+import useGame from "../../hooks/game detail/useGame";
+import ExpandableText from "../active components/ExpandableText";
+import GameAttributes from "../active components/GameAttributes";
+import GameScreenShots from "../active components/GameScreenShots";
+import GameMovie from "../active components/GameMovie";
 
 const GameDetailPage = () => {
   const { slug } = useParams();

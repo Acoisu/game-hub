@@ -1,6 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsArrowDownShort } from "react-icons/bs";
-import useGameQueryStore from "../store/store";
+import useGameQueryStore from "../../store/store";
 
 export interface SortType {
   name: string;
