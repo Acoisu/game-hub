@@ -1,4 +1,4 @@
-import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
+import { Card, CardBody, HStack, Heading, Image, Text } from "@chakra-ui/react";
 import Game from "../../entities/Game";
 import getResizedImageUrl from "../../services/image-url";
 import CriticScore from "../style components/CriticScore";
@@ -13,20 +13,22 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   return (
     <>
-      <Card height={"100%"}>
-        <Image src={getResizedImageUrl(game.background_image)} />
-        <CardBody>
-          <Heading fontSize="2xl">
-            <Link to={"/games/" + game.slug}>{game.name}</Link>
-          </Heading>
-          <HStack justifyContent={"space-between"}>
-            <PlatformIconList
-              platforms={game.parent_platforms.map((p) => p.platform)}
-            />
-            <CriticScore critic={game.metacritic} />
-          </HStack>
-        </CardBody>
-      </Card>
+      <Link to={"/games/" + game.slug}>
+        <Card height={"100%"}>
+          <Image src={getResizedImageUrl(game.background_image)} />
+          <CardBody>
+            <Heading fontSize="2xl">
+              <Text>{game.name}</Text>
+            </Heading>
+            <HStack justifyContent={"space-between"}>
+              <PlatformIconList
+                platforms={game.parent_platforms.map((p) => p.platform)}
+              />
+              <CriticScore critic={game.metacritic} />
+            </HStack>
+          </CardBody>
+        </Card>
+      </Link>
     </>
   );
 };
