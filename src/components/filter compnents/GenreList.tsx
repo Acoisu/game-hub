@@ -31,7 +31,7 @@ const GenreList = () => {
               <Image
                 key={genre.image_background}
                 src={getResizedImageUrl(genre.image_background)}
-                width={"45px"}
+                width={50}
                 borderRadius={5}
               ></Image>
               <Button
